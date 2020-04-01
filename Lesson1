@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class lesson1 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println ("Let's find x in ax+b=0");
+        System.out.print ("Enter a:");
+        double a = sc.nextInt();
+        System.out.print ("Enter b:");
+        double b = sc.nextInt();
+        if ((a == 0) & (b!=0)){
+            System.out.println("Error:if a=0, b can have the only value 0");
+        }
+        else{
+            if (( a == 0) & (b == 0)) {
+                System.out.println("x can have any value");
+            }
+            else {
+                double c = b / a;
+                double x = 0 - c;
+                System.out.println("x = " + x);
+            }
+        }
+    }
+}
