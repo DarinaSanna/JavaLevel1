@@ -1,11 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
-    public class SmartBride {
+public class SmartBride {
         public static void main(String[] args) throws IOException {
             BufferedReader reader = new BufferedReader(
                     new FileReader("src/candidates.csv"));
+            Scanner sc = new Scanner(System.in);
 
             reader.readLine();
             Candidate[] allCandidates = new Candidate[10];
@@ -15,30 +17,28 @@ import java.io.IOException;
 
             sortCandidates(allCandidates, candidatesCount);
 
-            for (Candidate candidate : allCandidates) {
+            System.out.print("How much candidates do you want to see?");
+            int n = sc.nextInt();
 
-                System.out.println(candidate);
-
-
-            }
-
+            for (int i = 0; i < n; i++)
+                System.out.println("Candidate{" +
+                        "name='" + allCandidates[i].name + '\'' +
+                        ", iq=" + allCandidates[i].iq +
+                        '}');
         }
 
 
-
-        private static void sortCandidates(Candidate[] allCandidates, int candidatesCount) {
+    private static void sortCandidates(Candidate[] allCandidates, int candidatesCount) {
             boolean sorted = false;
             while (!sorted) {
                 sorted = true;
-                Candidate smartest = allCandidates[0];
-                Candidate candidate = allCandidates[1];
-                for (int i = 0; i < candidatesCount - 1; i++) {
-                    if (candidate.iq > smartest.iq) {
+                //int i = 0;
+                for (int i=0; i < candidatesCount - 1; i++) {
+                    if (allCandidates[i].iq > allCandidates[i+1].iq) {
                         Candidate x = allCandidates[i];
                         allCandidates[i] = allCandidates[i + 1];
                         allCandidates[i + 1] = x;
                         sorted = false;
-                        candidatesCount = candidatesCount -1;
                     }
                 }
             }
@@ -67,16 +67,9 @@ import java.io.IOException;
             return candidatesCount;
         }
 
-        static class Candidate {
-            String name;
-            int iq;
 
-            @Override
-            public String toString() {
-                return "Candidate{" +
-                        "name='" + name + '\'' +
-                        ", iq=" + iq +
-                        '}';
-            }
-        }
     }
+class Candidate {
+    String name;
+    int iq;
+}
