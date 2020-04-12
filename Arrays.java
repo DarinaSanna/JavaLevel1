@@ -30,9 +30,9 @@ public class Arrays {
                     numbers[i] = numbers[i + 1];
                     numbers[i + 1] = x;
                     sorted = false;
-                    numbersCount = numbersCount-1;
                 }
             }
+            numbersCount = numbersCount-1;
         }
     }
 
