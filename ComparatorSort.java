@@ -1,5 +1,4 @@
-import java.util.Comparator;
-import java.util.Random;
+import java.util.*;
 
 public class ComparatorSort {
     interface Comparator<T> {
@@ -10,28 +9,30 @@ public class ComparatorSort {
 
         BookComparator myComparator = new BookComparator();
 
-        Book[] books = new Book[50];
-        books[0] = new Book("King", "Cell");
-        books[1] = new Book("Orwell", "1964");
-        books[2] = new Book("King", "Shining");
-
-
+        ArrayList<Book> books= new ArrayList<>();
+        books.add(new Book("King", "Cell"));
+        books.add(new Book("Orwell", "1964"));
+        books.add(new Book("King", "Shining"));
 
         bubbleSort(books, myComparator);
 
+        for (int i = 0; i < books.size(); i++) {
+            System.out.println(books.get(i).toString());
+        }
+
     }
 
-    private static void bubbleSort(Book[] books, BookComparator myComparator) {
+    private static void bubbleSort(ArrayList<Book> books, BookComparator myComparator) {
         boolean sorted = false;
         while (!sorted) {
             sorted = true;
-            for (int i = 0; i < books.length - 1; i++) {
-                Book first = books[i];
-                Book second = books[i + 1];
+            for (int i = 0; i < books.size() - 1; i++) {
+                Book first = books.get(i);
+                Book second = books.get(i+1);
                 if (myComparator.compare(first, second) > 0) {
-                    Book x = books[i];
-                    books[i] = books[i + 1];
-                    books[i + 1] = x;
+                    Book x = books.get(0);
+                    books.set(i, books.get(i+1));
+                    books.set((i + 1), x);
                     sorted = false;
                 }
             }
@@ -63,7 +64,7 @@ public class ComparatorSort {
         }
 
         public String toString() {
-            return "[" + id + "]" + author + ". '" + name + "'";
+            return "[" + id + "] " + author + ". '" + name + "'";
         }
     }
 
